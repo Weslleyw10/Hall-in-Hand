@@ -6,17 +6,29 @@ const Hall = new Schema({
         type: String,
         required: [true, 'Name is required.']
     },
-    photo: String,
-    cover: String,
+
+    photo: {
+        type: String
+    },
+
+    cover: {
+        type: String
+    },
+
     email: {
         type: String,
         required: [true, 'Email is required.']
     },
+
     password: {
         type: String,
         default: null
     },
-    phone: String,
+
+    phone: {
+        type: String
+    },
+
     address: {
         city: String,
         state: String,
@@ -24,15 +36,21 @@ const Hall = new Schema({
         number: Number,
         country: String
     },
+
     geo: {
-        type: String,
-        coordinates: Array
+        tipo: String,
+        coordinates: [Number]
     },
+    
     createdAt: {
         type: Date,
         default: Date.now
     },
-    updatedAt: Date,
+
+    updatedAt: {
+        type: Date,
+        default: null
+    },
 })
 
 Hall.index({ geo: '2dsphere' })

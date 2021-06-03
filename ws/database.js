@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const URI = 'mongodb+srv://wls:c4aNaPlOWUE10XQL@cluster0.wdf7a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const URI = 'mongodb+srv://wls:c4aNaPlOWUE10XQL@cluster0.wdf7a.mongodb.net/hall-in-hand?retryWrites=true&w=majority'
 
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)

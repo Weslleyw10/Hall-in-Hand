@@ -42,6 +42,7 @@ const Service = new Schema({
     },
     updatedAt: {
         type: Date,
+        default: null
     },
 })
 
