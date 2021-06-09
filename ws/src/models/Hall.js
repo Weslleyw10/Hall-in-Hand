@@ -41,6 +41,10 @@ const Hall = new Schema({
         tipo: String,
         coordinates: [Number]
     },
+
+    recipientId: {
+        type: String
+    },
     
     createdAt: {
         type: Date,

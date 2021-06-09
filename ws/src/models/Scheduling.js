@@ -2,25 +2,25 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const Scheduling = Schema({
-    hall: {
+    hallId: {
         type: mongoose.Types.ObjectId,
         ref: 'Hall',
         required: true
     },
 
-    customer: {
+    customerId: {
         type: mongoose.Types.ObjectId,
         ref: 'Customer',
         required: true
     },
 
-    employee: {
+    employeeId: {
         type: mongoose.Types.ObjectId,
         ref: 'Employee',
         required: true
     },
 
-    service: {
+    serviceId: {
         type: mongoose.Types.ObjectId,
         ref: 'Service',
         required: true
@@ -30,7 +30,6 @@ const Scheduling = Schema({
         type: Date,
         required: true
     },
-
     
     value: {
         type: Number,
@@ -44,6 +43,12 @@ const Scheduling = Schema({
 
     transactionId: {
         type: String
+    },
+
+    status: {
+        type: String,
+        enum: ['confirmed', 'canceled'],
+        default: 'confirmed'
     },
 
     createdAt: {

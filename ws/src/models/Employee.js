@@ -6,29 +6,42 @@ const Employee = new Schema({
         type: String,
         required: [true, 'Name is required.']
     },
-    phone: {
-        type: String,
-        required: [true, 'Phone is required.']
-    },
+
     email: {
         type: String,
         required: [true, 'Email is required.']
     },
+
+    password: {
+        type: String,
+        default: null
+    },
+
+    phone: {
+        type: String,
+    },
+
     cover: {
         type: String,
+        default: null
     },
+
     birthDate: {
         type: String,
+        default: null
     },
+
     gender: {
         type: String,
         enum: ['M', 'F']
     },
+
     status: {
         type: String,
         enum: ['active', 'inactive'],
         default: 'active'
     },
+
     bankAccount: {
         owner: {
             type: String,
@@ -44,6 +57,9 @@ const Employee = new Schema({
         },
         accountType: {
             type: String,
+            enum: [
+                'conta_corrente', 'conta_poupanca', 'conta_corrente_conjunta', 'conta_poupanca_conjunta'
+            ],
             required: true
         },
         bankAgency: {
@@ -54,21 +70,25 @@ const Employee = new Schema({
             type: String,
             required: true
         },
-        digit: {
+        verifyingDigit: {
             type: Number,
             required: true
         },
     },
+
     recipientId: {
         type: String,
         required: true
     },
+
     createdAt: {
         type: Date,
         default: Date.now
     },
+
     updatedAt: {
         type: Date,
+        default: null
     },
 })
 

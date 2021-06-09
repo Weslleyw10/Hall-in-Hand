@@ -6,47 +6,73 @@ const Customer = new Schema({
         type: String,
         required: [true, 'Name is required.']
     },
+
     phone: {
         type: String,
         required: [true, 'Phone is required.']
     },
+
     email: {
         type: String,
         required: [true, 'Email is required.']
     },
+
+    password: {
+        type: String,
+        required: [true, 'Password is required.']
+    },
+
     cover: {
         type: String,
+        default: null,
     },
-    birthDate: {
+
+    birthdate: {
         type: String,
+        default: null,
     },
+
     gender: {
         type: String,
         enum: ['M', 'F']
     },
+
     document: {
-        type: String,
-        enum: ['cpf', 'cnpj'],
-        document: Number
+        document: Number,
+        documentType: {
+            type: String,
+            enum: ['cpf', 'cnpj'],
+        },
     },
+
     address: {
+        address: String,
         city: String,
         state: String,
-        zipCode: String,
+        zipcode: String,
         number: Number,
         country: String
     },
+
+    externalId: {
+        type: String,
+        default: null
+    },
+
     status: {
         type: String,
         enum: ['active', 'inactive'],
         default: 'active'
     },
+
     createdAt: {
         type: Date,
         default: Date.now
     },
+
     updatedAt: {
         type: Date,
+        default: null
     },
 })
 

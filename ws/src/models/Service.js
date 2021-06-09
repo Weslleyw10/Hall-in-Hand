@@ -16,7 +16,7 @@ const Service = new Schema({
         required: true
     },
     duration: { // Duração em minutos
-        type: Number,
+        type: Date,
         required: true
     },
     commission: { // % de comissão sobre o preço
