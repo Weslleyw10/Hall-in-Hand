@@ -19,7 +19,6 @@ const Customer = new Schema({
 
     password: {
         type: String,
-        required: [true, 'Password is required.']
     },
 
     cover: {
@@ -27,7 +26,7 @@ const Customer = new Schema({
         default: null,
     },
 
-    birthdate: {
+    birthDate: {
         type: String,
         default: null,
     },

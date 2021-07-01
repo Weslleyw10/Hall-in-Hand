@@ -63,9 +63,6 @@ router.post('/', async (request, response) => {
                 files: files
             })
 
-            // response.json("ok")
-
-
         } catch (err) {
             response.json({error: true, message: err.message})
         }

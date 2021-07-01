@@ -81,7 +81,7 @@ router.post('/', async (request, response) => {
 
         if (relationshipHallAndCustomerIsAlready && relationshipHallAndCustomerIsAlready.status === 'active' &&
         customerIsAlready) {
-            response.json({ error: false, message: 'customer it already'})
+            response.json({ error: true, message: 'customer it already'})
         } else {
             response.json(newCustomer)
         }
@@ -93,7 +93,7 @@ router.post('/', async (request, response) => {
     }
 })
 
-router.get('/filters', async (request, response) => {
+router.post('/filters', async (request, response) => {
     try {
         const customers = await Customer.find(request.body)
         response.json(customers)

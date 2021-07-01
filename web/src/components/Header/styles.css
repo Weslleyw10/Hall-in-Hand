@@ -1,0 +1,30 @@
+header {
+    background: var(--primary);
+}
+
+header > div {
+    cursor: pointer;
+    transition: .5s;
+    padding: 10px 20px;
+    text-align: right;
+}
+
+header > div:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: .5s;
+}
+
+header img {
+    width: 50px;
+    border-radius: 100%;
+    margin-left: 15px;
+}
+
+header span:not(.mdi) {
+    margin-bottom: -10px;
+}
+
+header span.mdi {
+    font-size: 20px;
+    margin-left: 10px;
+}

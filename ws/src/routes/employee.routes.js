@@ -183,7 +183,7 @@ router.post('/filter', async (request, response) => {
     }
 })
 
-router.post('/hall/:hall', async (request, response) => {
+router.get('/hall/:hall', async (request, response) => {
     try {
         const { hall } = request.params
         let employeeSerializer = []
@@ -199,11 +199,13 @@ router.post('/hall/:hall', async (request, response) => {
             const services = await EmployeeAndService.
             find({
                 employee: employee.employee._id
-            })
+            }).populate('service')
 
             employeeSerializer.push({
                 ...employee._doc,
-                services
+                services: services.map(service => 
+                    service._id
+                )
             })
         }
 
