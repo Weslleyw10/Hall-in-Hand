@@ -26,6 +26,18 @@ const Sidebar = ({ location }) => {
                         <span>Colaboradores</span>
                     </Link>
                 </li>
+                <li>
+                    <Link to="services" className={location.pathname === '/services' ? 'active' : ''}>
+                        <span className="mdi mdi-card-account-details-outline"></span>
+                        <span>Serviços</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="schedules" className={location.pathname === '/schedules' ? 'active' : ''}>
+                        <span className="mdi mdi-card-account-details-outline"></span>
+                        <span>Horários</span>
+                    </Link>
+                </li>
             </ul>
         </sidebar>
 

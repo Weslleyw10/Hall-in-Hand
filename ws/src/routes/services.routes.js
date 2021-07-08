@@ -72,16 +72,70 @@ router.post('/', async (request, response) => {
 })
 
 router.put('/:id', async (request, response) => {
-    try {
-        let serviceId = request.params.id
-        let data = request.body
+    var busboy = new Busboy({ headers: request.headers })
+    busboy.on('finish', async () => {
+        try {
+            const { hallId } = request.body
+            const data = request.body
 
-        let service = await Service.findByIdAndUpdate(serviceId, data)
+            let errs = []
+            let files = []
 
-        response.json(service)
-    } catch (err) {
-        response.json({error: true, message: err.message})
-    }
+            if(request.files && Object.keys(request.files).length > 0) {
+                for (let key of Object.keys(request.files)) {
+                    const file = request.files[key]
+
+                    const fileNameParts = file.name.split('.') //[filename, jpg]
+                    const newFileName = `${new Date().getTime()}.${fileNameParts[fileNameParts.length -1]}`
+
+                    const path = `services/${hallId}/${newFileName}`
+                    const response = await AWS.uploadToS3(
+                        file, path
+                    )
+
+                    if(response.error) {
+                        errs.push({error: true, message: response.message})
+                    } else {
+                        files.push(path)
+                    }
+                }
+            }
+
+            if (errs.length > 0) {
+                response.json(errs[0])
+                return false
+            }
+
+            // update service
+            let serviceJSON = JSON.parse(data.service)
+
+            console.log('ID',request.params.id)
+            console.log('serviceJSON',serviceJSON)
+
+
+            const service = await Service.findByIdAndUpdate(request.params.id, serviceJSON)
+
+            // create file
+            files = files.map(file => ({
+                refId: service._id,
+                model: 'Service',
+                path: file,
+            }))
+
+            await Media.insertMany(files)
+
+            response.json({
+                service: service, 
+                files: files
+            })
+
+        } catch (err) {
+            response.json({error: true, message: err.message})
+        }
+    })
+
+    request.pipe(busboy)
+
 })
 
 router.delete('/:id', async(request, response) => {
@@ -96,15 +150,15 @@ router.delete('/:id', async(request, response) => {
     }
 })
 
-router.delete('/media', async (request, response) => {
+router.post('/media', async (request, response) => {
     try {
-        let { id } = request.body
+        let { key } = request.body
 
         // delete AWS
-        await aws.deleteFileS3(id)
+        await aws.deleteFileS3(key)
 
         // delete database
-        await Media.findOneAndDelete({ path: id })
+        await Media.findOneAndDelete({ path: key })
 
         response.json("File deleted.")
 

@@ -7,6 +7,7 @@ const Schedule = Schema({
         ref: 'Hall',
         required: true
     },
+    
     specialties: [
         {
             type: mongoose.Types.ObjectId,
@@ -14,6 +15,7 @@ const Schedule = Schema({
             required: true
         }
     ],
+
     employees: [
         {
             type: mongoose.Types.ObjectId,
@@ -21,22 +23,27 @@ const Schedule = Schema({
             required: true
         }
     ],
+
     days: {
         type: [Number],
         required: true
     },
+
     start: {
         type: Date,
         required: true
     },
+
     end: {
         type: Date,
         required: true
     },
+
     createdAt: {
         type: Date,
         default: Date.now
     },
+
     updatedAt: {
         type: Date,
     },

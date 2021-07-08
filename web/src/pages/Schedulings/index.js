@@ -8,8 +8,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 import utils from '../../utils'
 
-
-
 const localizer = momentLocalizer(moment)
 
 const Schedulings = () => {

@@ -14,7 +14,10 @@ export function* allEmployees() {
     try {
         yield put(updateEmployees({ form: { ...form, filtering: true } }))
 
-        const { data: res } = yield call(rest.get, `/employee/hall/60b92a65806460dd54a02098`)
+        const { data: res } = yield call(
+            rest.get, 
+            `/employee/hall/60b92a65806460dd54a02098`
+            )
 
         yield put(updateEmployees({ form: { ...form, filtering: false } }));
 

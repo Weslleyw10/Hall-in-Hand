@@ -360,7 +360,7 @@ const Employees = () => {
                                     setComponent('drawer', true)
                                 }}
                             >
-                                <span className="mdi mdi-plus">Novo Cliente</span>
+                                <span className="mdi mdi-plus">Novo Colaborador</span>
                             </button>
                         </div>
                     </div>
